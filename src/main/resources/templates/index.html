@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .addNew {
+            margin: auto;
+            width: 60%;
+            border: 1px solid #04AA6D;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<main  stylesheet href="style.css" type="text/css" style="width: 40%; margin: 0 auto">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <h1 align="center">Add new record</h1>
+
+    <div id="adding" class="addNew" align="center">
+    <form action="adding" method="post">
+        <table>
+
+            <tr>
+                <td><label for="city">City name:</label></td>
+                <td><input type="text" name="city" placeholder="Up to 50 characters" required maxlength="50" pattern="[a-zA-Ząęźżśóćńł\s]+"></td>
+            </tr>
+
+            <tr>
+                <td><label for="temperature">Temperature:</label></td>
+                <td><input type="number" with step="0.1" min="-99.9" max="99.9" name="temperature" required="required" placeholder="-99.0÷99.0"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+
+        </table>
+    </form>
+    </div>
+
+    <div id="history" >
+        <h1>Check history</h1>
+    <form id="goToHistoryButton" class="pure-form pure-g pure-form-aligned">
+        <button id="buttonUserHistory" class="pure-button pure-button-primary pure-u-1" type="submit" formaction="/history">Go to history menu</button>
+    </form>
+    </div>
+
+</main>
+</body>
+</html>

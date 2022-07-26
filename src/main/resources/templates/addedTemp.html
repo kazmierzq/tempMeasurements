@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        #tempAdded {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #tempAdded td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #tempAdded tr:nth-child(even){background-color: #f2f2f2;}
+
+        #tempAdded tr:hover {background-color: #ddd;}
+
+        #tempAdded th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<main  stylesheet href="style.css" type="text/css" style="width: 40%; margin: 0 auto">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <h2 align="center">Temperature record added:</h2>
+
+    <p>
+    <table id="tempAdded">
+        <tr>
+            <th style="text-align:center">City</th>
+            <th style="text-align:center">Temperature</th>
+            <th style="text-align:center">Date</th>
+        </tr>
+        <tr>
+            <td style="text-align:center" th:text="${temperature.city}" ></td>
+            <td style="text-align:center" th:text="${temperature.temperature}" ></td>
+            <td style="text-align:center" th:text="${temperature.getDateInfo()}" ></td>
+        </tr>
+    </table>
+    </p>
+
+    <form id="goHomeButton" class="pure-form pure-g pure-form-aligned">
+        <button id="buttonReturn" class="pure-button pure-button-primary pure-u-1" type="submit" formaction="/">Return</button>
+    </form>
+</main>
+</body>
+</html>
