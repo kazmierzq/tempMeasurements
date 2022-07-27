@@ -14,10 +14,10 @@ public class TemperatureService {
     @Autowired
     private TemperatureRepository repository;
 
-    private Set<String> uniqueCityNames = new TreeSet<>();
-    private Set<String> uniqueDates = new TreeSet<>();
+    private Set<String> uniqueCityNames = Collections.synchronizedSet(new TreeSet<>());
+    private Set<String> uniqueDates = Collections.synchronizedSet(new TreeSet<>());
 
-    private List<TemperatureAverageCalculation> listForMap = new ArrayList<>();
+    private List<TemperatureAverageCalculation> listForMap = Collections.synchronizedList(new ArrayList<>());
 
     private ConcurrentHashMap<String, List<TemperatureAverageCalculation>> mapOfResults = new ConcurrentHashMap<>();
     private ConcurrentHashMap<String, String> mapOfNationalResult = new ConcurrentHashMap<>();
