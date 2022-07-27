@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        #calculations, #calculationsNational {
+        #calculations {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
@@ -43,68 +43,55 @@
 <main  stylesheet href="style.css" type="text/css" style="width: 40%; margin: 0 auto">
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-<h2 style="text-align:center">Panel for displaying temperature measurements</h2>
+<h2 style="text-align:center">Panel to view calculated temperature averages for selected date</h2>
 
 <form action="/history" method="get">
     <div class="center" align="center">
-        <label>Choose city:</label>
-        <br>
-
-        <select id="city" name="city">
-            <option
-                    th:each="item1 : ${cityNamesSet}"
-                    th:value="${item1}"
-                    th:text="${item1}"></option>
-        </select>
-
-        <br>
         <label>Choose date:</label>
         <br>
 
         <select id="date" name="date">
             <option
-                    th:each="item2 : ${datesSet}"
-                    th:value="${item2}"
-                    th:text="${item2}"></option>
+                    th:each="item1 : ${getAllUniqueDates}"
+                    th:value="${item1}"
+                    th:text="${item1}"></option>
         </select>
 
         <br><br>
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Show data if already calculated for selected date"/>
+
     </div>
 </form>
 
-<h2 style="text-align:center">Average temperature calculations</h2>
-    <p>
-    <table id="calculations">
-        <tr>
-            <th style="text-align:center">for</th>
-            <th style="text-align:center">results</th>
-        </tr>
-        <tr>
-            <td style="text-align:center">the whole day (24h: 00:00-00:00)</td>
-            <td style="text-align:center" id="averDay" th:text="${averageCalculatedForDay}"></td>
-        </tr>
-        <tr>
-            <td style="text-align:center">the day-time (16h:06:00-22:00)</td>
-            <td style="text-align:center" class="trAver0622" th:text="${averageCalculatedFor0622}"></td>
-        </tr>
-        <tr>
-            <td style="text-align:center">the night-time (8h:22:00-06:00)</td>
-            <td style="text-align:center" id="trAver2206" th:text="${averageCalculatedFor2206}"></td>
-        </tr>
-    </table>
-    </p>
-
+    <h2 style="text-align:center">Average temperature calculations</h2>
     <p>
     <table id="calculationsNational">
         <tr>
-            <th style="text-align:center">National summary</th>
-            <th style="text-align:center">results</th>
+            <th style="text-align:center">Average for the whole country</th>
         </tr>
-    <tr>
-        <td style="text-align:center">the whole country (24h: 00:00-00:00)</td>
-        <td style="text-align:center" id="aver" th:text="${averageCalculatedForNational}"></td>
-    </tr>
+            <tr>
+                <td th:text="${getResultsForDateNational}"></td>
+            </tr>
+        </th:block>
+    </table>
+    <br>
+    <table id="calculations">
+        <tr>
+            <th style="text-align:center">City</th>
+            <th style="text-align:center">Average daily</th>
+            <th style="text-align:center">Average between 06:00 - 22:00</th>
+            <th style="text-align:center">Average between 22:00 - 06:00</th>
+            <th style="text-align:center">Last time calculated</th>
+        </tr>
+        <th:block th:each="getResultsForDate : ${getResultsForDate}">
+            <tr>
+                <td th:text="${getResultsForDate.getCity}"></td>
+                <td th:text="${getResultsForDate.getAverageDaily}"></td>
+                <td th:text="${getResultsForDate.getAverage0622}"></td>
+                <td th:text="${getResultsForDate.getAverage2206}"></td>
+                <td th:text="${getResultsForDate.getDateOfLastCalculation}"></td>
+            </tr>
+        </th:block>
     </table>
     </p>
 

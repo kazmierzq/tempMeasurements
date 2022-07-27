@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        .addNew {
+        #addNew, #calculate, #history {
             margin: auto;
             width: 60%;
             border: 1px solid #04AA6D;
@@ -16,35 +16,45 @@
 <main  stylesheet href="style.css" type="text/css" style="width: 40%; margin: 0 auto">
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-    <h1 align="center">Add new record</h1>
+    <div id="addNew" class="addNew" align="center">
+        <h1>Add new temperature record</h1>
+        <form action="adding" method="post">
+            <table>
 
-    <div id="adding" class="addNew" align="center">
-    <form action="adding" method="post">
-        <table>
+                <tr>
+                    <td><label for="city">City name:</label></td>
+                    <td><input type="text" name="city" placeholder="Up to 50 characters" required maxlength="50" pattern="[a-zA-Ząęźżśóćńł\s]+"></td>
+                </tr>
 
-            <tr>
-                <td><label for="city">City name:</label></td>
-                <td><input type="text" name="city" placeholder="Up to 50 characters" required maxlength="50" pattern="[a-zA-Ząęźżśóćńł\s]+"></td>
-            </tr>
+                <tr>
+                    <td><label for="temperature">Temperature:</label></td>
+                    <td><input type="number" with step="0.1" min="-99.9" max="99.9" name="temperature" required="required" placeholder="-99.0÷99.0"></td>
+                </tr>
 
-            <tr>
-                <td><label for="temperature">Temperature:</label></td>
-                <td><input type="number" with step="0.1" min="-99.9" max="99.9" name="temperature" required="required" placeholder="-99.0÷99.0"></td>
-            </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
 
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Submit"></td>
-            </tr>
-
-        </table>
-    </form>
+            </table>
+        </form>
     </div>
 
-    <div id="history" >
-        <h1>Check history</h1>
+    <br>
+
+    <div id="calculate" class="calculate" align="center">
+        <h1>Calculating</h1>
+        <form id="goToCalculationButton" class="pure-form pure-g pure-form-aligned">
+            <button id="buttonUserCalculate" class="pure-button pure-button-primary pure-u-1" type="submit" formaction="/calculate">Go to calculation zone</button>
+        </form>
+    </div>
+
+    <br>
+
+    <div id="history" class="history" align="center">
+        <h1>View calculated data</h1>
     <form id="goToHistoryButton" class="pure-form pure-g pure-form-aligned">
-        <button id="buttonUserHistory" class="pure-button pure-button-primary pure-u-1" type="submit" formaction="/history">Go to history menu</button>
+        <button id="buttonUserHistory" class="pure-button pure-button-primary pure-u-1" type="submit" formaction="/history">Go to history zone</button>
     </form>
     </div>
 
