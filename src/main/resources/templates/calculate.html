@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        #calculations, #calculationsNational {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #calculations td, #calculations th, #calculationsNational td, #calculationsNational th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #calculations tr:nth-child(even){background-color: #f2f2f2;}
+
+        #calculationsNational tr:nth-child(even){background-color: #f2f2f2;}
+
+        #calculations tr:hover {background-color: #ddd;}
+
+        #calculationsNational tr:hover {background-color: #ddd;}
+
+        #calculations th, #calculationsNational th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .center {
+            margin: auto;
+            width: 60%;
+            border: 1px solid #04AA6D;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<main  stylesheet href="style.css" type="text/css" style="width: 40%; margin: 0 auto">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+<h2 style="text-align:center">Panel to (re)calculate data</h2>
+
+<form action="/calculate" method="get">
+    <div class="center" align="center">
+        <label>Choose date:</label>
+        <br>
+
+        <select id="date" name="date">
+            <option
+                    th:each="item1 : ${getAllUniqueDates}"
+                    th:value="${item1}"
+                    th:text="${item1}"></option>
+        </select>
+
+        <br><br>
+        <input type="submit" value="Recalculate data for selected date"/>
+
+    </div>
+</form>
+
+<form id="goHomeButton" class="pure-form pure-g pure-form-aligned">
+    <button id="buttonReturn" class="pure-button pure-button-primary pure-u-1" type="submit" formaction="/">Return</button>
+</form>
+
+</main>
+</body>
+</html>
