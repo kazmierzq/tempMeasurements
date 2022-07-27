@@ -27,7 +27,7 @@ public class TemperatureService {
     // Add new record of a temperature (together with updates of the unique city names and dates for UI)
     public String addTemperature(Temperature temperature) {
         repository.addTemperature(temperature);
-        uniqueCityNames.add(temperature.getCity());
+        uniqueCityNames.add(temperature.getCity().substring(0,1).toUpperCase() + temperature.getCity().substring(1).toLowerCase());
         uniqueDates.add(temperature.getDate().substring(0,10));
         return "Temperature " + temperature.getTemperature() + " has been added for city " + temperature.getCity() + "!";
     }
@@ -108,7 +108,8 @@ public class TemperatureService {
 
         for (Temperature temperatures : map.values()) {
 
-            if (temperatures.getCity().equals(city) && temperatures.getDate().substring(0,10).equals(date)) {
+            if (temperatures.getCity().toLowerCase().replaceAll("\\s+", "").equals(city.toLowerCase().replaceAll("\\s+", ""))
+                    && temperatures.getDate().substring(0,10).equals(date)) {
 
                 // For an average of whole `day`
                 if (request == 1) {
@@ -163,7 +164,9 @@ public class TemperatureService {
 
         List<TemperatureAverageCalculation> temporaryList = new ArrayList<>();
 
-        for (String city : uniqueCityNames) {
+        Set<String> setOfNames = getAllUniqueCityNames();
+
+        for (String city : setOfNames) {
             String averageD = getAverageByRequestForCity(date, city, 1);
             String average0622 = getAverageByRequestForCity(date, city, 2);
             String average2206 = getAverageByRequestForCity(date, city, 3);
